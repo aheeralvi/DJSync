@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="1024px" viewBox="0 0 1440 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop HD</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD">
+            <rect id="Rectangle" fill-opacity="0" fill="#000000" x="0" y="0" width="1440" height="1024"></rect>
+            <polygon id="Polygon-2" fill-opacity="0.9" fill="#00C8FF" transform="translate(720.000000, 512.000000) scale(-1, 1) translate(-720.000000, -512.000000) " points="1440 0 1440 1024 720 512 0 0"></polygon>
+            <polygon id="Polygon" fill-opacity="0.907325634" fill="#00BDFF" points="1440 0 1440 1024 0 1024"></polygon>
+        </g>
+    </g>
+</svg>
