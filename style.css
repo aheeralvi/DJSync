@@ -3,7 +3,8 @@
 }
 
 body {
-    background-image: url(http://i.imgur.com/nm6xPrg.jpg);
+    /* background-image: url(http://i.imgur.com/nm6xPrg.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
+    background-color: rgb(0, 200, 255);
 }
