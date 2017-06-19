@@ -4,5 +4,6 @@
 
 body {
     background-image: url(http://i.imgur.com/nm6xPrg.jpg);
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
