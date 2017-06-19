@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -6,3 +7,8 @@ body {
     background-image: url(http://i.imgur.com/nm6xPrg.jpg);
     background-size: 100%;
 }
+=======
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+>>>>>>> fd7aa307736d70d03ea30602794ba7681f123197
