@@ -19,8 +19,8 @@ const logout = document.getElementById('logout');
 
 logout.addEventListener('click', e => {
     firebase.auth().signOut();
-
 });
+
 //add sign in event
 signin.addEventListener('click', e => {
     //get email and password
@@ -47,11 +47,11 @@ signup.addEventListener('click', e => {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
-        logout.style.display = 'inline-block'
+        //logout.style.display = 'inline-block'
         var user = firebase.auth().currentUser;
-        alert(user.uid);
+        window.location.href = "index.html";
     } else {
         console.log('not logged in');
-        logout.style.display = 'none'
+        //logout.style.display = 'none'
     }
 });
