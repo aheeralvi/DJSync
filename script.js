@@ -1,12 +1,21 @@
 function startVideo(Videoid, startTime) {
+    var currentTime = (new Date).toTimeString().slice(0, 8);
     var videoLink = ("http://www.youtube.com/embed/" + Videoid + "?start=" + startTime + "&autoplay=1&controls=0&showinfo=1&disablekb=1")
         // alert(videoLink);
     document.getElementById('player').src = videoLink;
+
+    firebase.database().ref('VideoStates' + currentTime).set({
+        startTimeStamp: currentTime,
+        videoUniqueID: Videoid
+    });
+
     return;
 }
 
 startVideo("vW4tyQ5XD_Q", "60");
 
+
+// sign in stuff
 const txtemail = document.getElementById('txtemail');
 const txtpassword = document.getElementById('txtpassword');
 const signup = document.getElementById('signup');
