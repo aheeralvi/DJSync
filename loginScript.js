@@ -7,7 +7,10 @@ var config = {
     storageBucket: "music-sync-8212d.appspot.com",
     messagingSenderId: "317967865570"
 };
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
+//firebase.initializeApp(config);
 
 
 // sign in stuff

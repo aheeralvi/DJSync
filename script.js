@@ -1,5 +1,5 @@
 // Initialize Firebase
-/* var config = {
+var config = {
     apiKey: "AIzaSyAH7CQ-JuB5KFJqFGrQXIF_NxMp-glz6PY",
     authDomain: "music-sync-8212d.firebaseapp.com",
     databaseURL: "https://music-sync-8212d.firebaseio.com",
@@ -7,8 +7,11 @@
     storageBucket: "music-sync-8212d.appspot.com",
     messagingSenderId: "317967865570"
 };
-firebase.initializeApp(config);
-*/
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
+//firebase.initializeApp(config);
+
 
 function startVideo(Videoid, startTime) {
     var currentTime = (new Date).toTimeString().slice(0, 8);
