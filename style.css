@@ -1,12 +1,61 @@
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
+    font-weight: lighter;
 }
 
 body {
-    /* background-image: url(http://i.imgur.com/nm6xPrg.jpg);
+    background-image: url(http://i.imgur.com/n9GNv4b.png);
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: no-repeat; */
-    background-color: rgb(0, 200, 255);
+}
+
+.inputs {
+    display: block;
+    margin: 20px auto;
+    color: #19CDFF;
+    height: 40px;
+    width: 200px;
+    border: 0px solid white;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, .05);
+    font-size: 18;
+}
+
+.buttons1 {
+    border: 0px solid white;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 20px;
+    width: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.inputs::placeholder {
+    color: #19CDFF;
+    text-align: center;
+}
+
+.inputs:focus::placeholder {
+    opacity: 0;
+}
+
+#logintext {
+    color: #19CDFF;
+    font-size: 70;
+    padding-top: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+#loginbox {
+    background-color: rgba(250, 250, 250, 0.95);
+    margin: 200px auto;
+    width: 300px;
+    height: 300px;
+    text-align: center;
 }
 
 #vid {
