@@ -53,6 +53,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
         logout.style.display = 'inline-block'
+        var user = firebase.auth().currentUser;
+        alert(user.uid);
     } else {
         console.log('not logged in');
         logout.style.display = 'none'
