@@ -7,24 +7,45 @@ function startVideo(Videoid, startTime) {
 
 startVideo("vW4tyQ5XD_Q", "60");
 
+const txtemail = document.getElementById('txtemail');
+const txtpassword = document.getElementById('txtpassword');
+const signup = document.getElementById('signup');
+const signin = document.getElementById('signin');
+const logout = document.getElementById('logout');
 
-function toggleSignIn() {
-    if (!firebase.auth().currentUser) {
-        // [START createprovider]
-        var provider = new firebase.auth.GoogleAuthProvider();
-        // [END createprovider]
-        // [START addscopes]
-        provider.addScope('https://www.googleapis.com/auth/plus.login');
-        // [END addscopes]
-        // [START signin]
-        firebase.auth().signInWithRedirect(provider);
-        // [END signin]
+logout.addEventListener('click', e => {
+    firebase.auth().signOut();
+
+});
+//add sign in event
+signin.addEventListener('click', e => {
+    //get email and password
+    const email = txtemail.value;
+    const password = txtpassword.value;
+    const auth = firebase.auth();
+    //sign in
+    const promise = auth.signInWithEmailAndPassword(email, password);
+
+    promise.catch(e => console.log(e.message));
+});
+
+//add sign up event
+signup.addEventListener('click', e => {
+    //get email and password
+    const email = txtemail.value;
+    const password = txtpassword.value;
+    const auth = firebase.auth();
+    const promise = auth.createUserWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+});
+
+//add realtime authentication listener
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+        console.log(firebaseUser);
+        logout.style.display = 'inline-block'
     } else {
-        // [START signout]
-        firebase.auth().signOut();
-        // [END signout]
+        console.log('not logged in');
+        logout.style.display = 'none'
     }
-    // [START_EXCLUDE]
-    document.getElementById('quickstart-sign-in').disabled = true;
-    // [END_EXCLUDE]
-}
+});
