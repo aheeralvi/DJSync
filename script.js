@@ -19,7 +19,7 @@ function startVideo(Videoid, startTime) {
         // alert(videoLink);
     document.getElementById('player').src = videoLink;
 
-    firebase.database().ref('VideoStates' + currentTime).set({
+    firebase.database().ref('VideoStates').set({
         startTimeStamp: currentTime,
         videoUniqueID: Videoid
     });
@@ -28,3 +28,18 @@ function startVideo(Videoid, startTime) {
 }
 
 startVideo("vW4tyQ5XD_Q", "60");
+
+function thingsDoStuff() {
+
+    // var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref("/VideoStates/").once('value').then(function(snapshot) {
+        var username = snapshot.val().startTimeStamp;
+        var playingVideoId = snapshot.val().videoUniqueID;
+        console.log(username);
+        console.log(playingVideoId);
+
+    });
+
+}
+
+thingsDoStuff();
