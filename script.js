@@ -25,11 +25,7 @@ function startVideo(Videoid, startTime) {
     return;
 }
 
-<<<<<<< HEAD
-//startVideo("vW4tyQ5XD_Q", "60");
-=======
 startVideo("typiQaelXD4", "60");
->>>>>>> 798fc5a9af2f5b0f6dd04f335b5bccc7c0a4fe68
 
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
