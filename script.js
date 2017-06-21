@@ -29,17 +29,15 @@ function startVideo(Videoid, startTime) {
 
 startVideo("vW4tyQ5XD_Q", "60");
 
-function thingsDoStuff() {
+function pullVideoData() {
 
     // var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref("/VideoStates/").once('value').then(function(snapshot) {
-        var username = snapshot.val().startTimeStamp;
+        var timeVideoStarted = snapshot.val().startTimeStamp;
         var playingVideoId = snapshot.val().videoUniqueID;
-        console.log(username);
-        console.log(playingVideoId);
+
+        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + "" + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 
     });
 
 }
-
-thingsDoStuff();
