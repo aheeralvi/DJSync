@@ -10,11 +10,9 @@ var config = {
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
-//firebase.initializeApp(config);
-
 
 function startVideo(Videoid, startTime) {
-    var currentTime = (new Date).toTimeString().slice(0, 8);
+    var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
     var videoLink = ("http://www.youtube.com/embed/" + Videoid + "?start=" + startTime + "&autoplay=1&controls=0&showinfo=1&disablekb=1")
         // alert(videoLink);
     document.getElementById('player').src = videoLink;
@@ -27,16 +25,17 @@ function startVideo(Videoid, startTime) {
     return;
 }
 
-//startVideo("vW4tyQ5XD_Q", "60");
+startVideo("vW4tyQ5XD_Q", "60");
 
 function pullVideoData() {
-
+    var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
     // var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref("/VideoStates/").once('value').then(function(snapshot) {
         var timeVideoStarted = snapshot.val().startTimeStamp;
         var playingVideoId = snapshot.val().videoUniqueID;
-
-        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + "" + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+        var difTimes = Math.ceil((currentTime - timeVideoStarted) / (1000));
+        console.log(difTimes);
+        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 
     });
 
