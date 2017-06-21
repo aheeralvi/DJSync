@@ -26,17 +26,18 @@ logout.addEventListener('click', e => {
 
 //add sign in event
 signin.addEventListener('click', e => {
-    //get email and password
-    const email = txtemail.value;
-    const password = txtpassword.value;
+    // //get email and password
+    // const email = txtemail.value;
+    // const password = txtpassword.value;
     const auth = firebase.auth();
     //sign in
-    const promise = auth.signInWithEmailAndPassword(email, password);
-
-    promise.catch(e => console.log(e.message));
+    const promise = auth.signInAnonymously().catch(function(error) {
+        console.log(error.message);
+    })
 });
 
 //add sign up event
+/*
 signup.addEventListener('click', e => {
     //get email and password
     const email = txtemail.value;
@@ -44,7 +45,7 @@ signup.addEventListener('click', e => {
     const auth = firebase.auth();
     const promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-});
+});*/
 
 //add realtime authentication listener
 firebase.auth().onAuthStateChanged(firebaseUser => {
