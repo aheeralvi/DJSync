@@ -54,7 +54,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         var user = firebase.auth().currentUser;
         window.location.href = "index.html";
     } else {
-        console.log('not logged in');
-        //logout.style.display = 'none'
+        console.log("Signin Failed");
     }
 });
