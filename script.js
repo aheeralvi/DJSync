@@ -27,7 +27,7 @@ function startVideo(Videoid, startTime) {
     return;
 }
 
-startVideo("vW4tyQ5XD_Q", "60");
+//startVideo("vW4tyQ5XD_Q", "60");
 
 function pullVideoData() {
 
