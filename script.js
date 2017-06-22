@@ -46,11 +46,16 @@ function joinRoom(roomName) {
 }
 
 function createRoom() {
-    var videoID = document.getElementById("videoID").value;
+    var videoID = document.getElementById("videoid").value;
     var roomName = document.getElementById("roomname").value;
     var startTime = (new Date).getTime();
     firebase.database().ref(roomName).set({
         videoLink: videoID,
         startTime: startTime
     })
+}
+
+
+function showBox(elementId) {
+    document.getElementById(elementId).style.display = 'block';
 }

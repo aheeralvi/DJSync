@@ -2,17 +2,24 @@
 
 <head>
     <link rel='stylesheet' type='text/css' href='style.css'></link>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 </head>
 
 <body>
     <div id='logout'>
+        <button class='buttons2' type='button' onclick="showBox('roomdialogue')">Create Room</button>
         <a href="login.html">
             <button class='buttons2' type='button'>Logout</button>
         </a>
     </div>
-    <script src='homeScript.js '></script>
+    <div id='roomdialogue'>
+        <h1 id='roomtext'>Create Your Room</h1>
+        <input class='inputs' id='roomname' placeholder="your room name"></input>
+        <input class='inputs' id='videoid' placeholder="enter a video id"></input>
+        <button class='buttons1' id='submit' type='button' onclick='createRoom()'>enter</button>
+    </div>
+    <script src=' script.js '></script>
     <script src='loginScript.js '></script>
 </body>
 
