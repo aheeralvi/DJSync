@@ -45,7 +45,9 @@ function joinRoom(roomName) {
     return nil;
 }
 
-function createRoom(roomName, videoID) {
+function createRoom() {
+    var videoID = document.getElementById("videoID").value;
+    var roomName = document.getElementById("roomname").value;
     var startTime = (new Date).getTime();
     firebase.database().ref(roomName).set({
         videoLink: videoID,
