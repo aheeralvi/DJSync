@@ -9,15 +9,21 @@
 <body>
     <div id='logout'>
         <button class='buttons2' type='button' onclick="showBox('roomdialogue')">Create Room</button>
+        <button class='buttons2' type='button' onclick="showBox('joindialogue')">Join A Room</button>
         <a href="login.html">
             <button class='buttons2' type='button'>Logout</button>
         </a>
     </div>
     <div id='roomdialogue'>
-        <h1 id='roomtext'>Create Your Room</h1>
+        <h1 class='roomtext'>Create Your Room</h1>
         <input class='inputs' id='roomname' placeholder="your room name"></input>
         <input class='inputs' id='videoid' placeholder="enter a video id"></input>
         <button class='buttons1' id='submit' type='button' onclick='createRoom()'>enter</button>
+    </div>
+    <div id='joindialogue'>
+        <h1 class='roomtext'>Join A Room</h1>
+        <input class='inputs' id='name' placeholder="name of room"></input>
+        <button class='buttons1' type='button'>enter</button>
     </div>
     <script src=' script.js '></script>
     <script src='loginScript.js '></script>
