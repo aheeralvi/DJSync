@@ -33,6 +33,31 @@ body {
     margin-right: 10px;
     color: #19CDFF;
     font-size: 18;
+    -webkit-transition: font-weight 0.3s, background-color 0.3s;
+    transition: font-weight 0.3s, background-color 0.3s;
+}
+
+.buttons1:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: 900;
+}
+
+.buttons2 {
+    border: 2px solid white;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 40px;
+    width: 140px;
+    color: #FAFAFA;
+    font-size: 18;
+    -webkit-transition: background-color 0.3s, font-weight 0.3s;
+    transition: background-color 0.3s, font-weight 0.3s;
+}
+
+.buttons2:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
 }
 
 .inputs::placeholder {
@@ -63,4 +88,12 @@ body {
 #vid {
     height: 300px;
     width: 300px;
+}
+
+#logout {
+    position: relative;
+    top: 1%;
+    left: 85%;
+    width: 150;
+    height: 50;
 }

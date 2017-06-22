@@ -25,7 +25,7 @@ function startVideo(Videoid, startTime) {
     return;
 }
 
-startVideo("typiQaelXD4", "0");
+//startVideo("typiQaelXD4", "0");
 
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
