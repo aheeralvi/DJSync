@@ -37,24 +37,24 @@ function pullVideoData() {
         console.log(difTimes);
         document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 
+
+
     });
 
 }
 
-function joinRoom(roomName) {
-    return nil;
-}
+
 
 function createRoom() {
     var videoID = document.getElementById("videoid").value;
     var roomName = document.getElementById("roomname").value;
     var startTime = (new Date).getTime();
-    firebase.database().ref(roomName).set({
+    const promise = firebase.database().ref(roomName).set({
         videoLink: videoID,
         startTime: startTime
     })
+    promise.then(function() { window.location.href = 'index.html' }, function() { console.log("fail") });
 }
-
 
 function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
