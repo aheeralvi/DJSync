@@ -45,11 +45,10 @@ function joinRoom(roomName) {
     return nil;
 }
 
-function createRoom(roomName) {
+function createRoom(roomName, videoID) {
+    var startTime = (new Date).getTime();
     firebase.database().ref(roomName).set({
-        videoLink: "awaiting video link",
-        startTime: "awaiting start time"
+        videoLink: videoID,
+        startTime: startTime
     })
 }
-
-createRoom("emtyPersonRoom");
