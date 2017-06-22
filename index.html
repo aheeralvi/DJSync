@@ -8,24 +8,27 @@
 </head>
 
 <body>
-    <div id='logout'>
-        <a href="home.html">
-            <button class='buttons2' type='button'>Home</button>
-        </a>
-        <p></p>
-        <a href="login.html">
-            <button class='buttons2' type='button'>Logout</button>
-        </a>
 
-    </div>
+    <body onload="loadVideo()">
 
-    <div id="vid" style="position:relative;height:300;width:300;padding-bottom:15%">
-        <iframe id="player" src="" width="100%" height="100%"></iframe>
-    </div>
-    <button class='buttons2' type='button' onclick='pullVideoData()'>Sync</button>
+        <div id='logout'>
+            <a href="home.html">
+                <button class='buttons2' type='button'>Home</button>
+            </a>
+            <p></p>
+            <a href="login.html">
+                <button class='buttons2' type='button'>Logout</button>
+            </a>
 
-    <script src='script.js '></script>
-    <script src='loginScript.js '></script>
-</body>
+        </div>
+
+        <div id="vid" style="position:relative;height:300;width:300;padding-bottom:15%">
+            <iframe id="player" src="" width="100%" height="100%"></iframe>
+        </div>
+        <button class='buttons2' type='button' onclick='pullVideoData()'>Sync</button>
+
+        <script src='script.js '></script>
+        <script src='loginScript.js '></script>
+    </body>
 
 </html>

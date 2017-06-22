@@ -29,20 +29,18 @@ function startVideo(Videoid, startTime) {
 
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
-
-    var roomName = document.getElementById("roomToJoin").value
-
+    var roomName = document.getElementById("roomToJoin").value;
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         var timeVideoStarted = snapshot.val().startTime;
         var playingVideoId = snapshot.val().videoLink;
-        var difTimes = Math.ceil((currentTime - timeVideoStarted) / (1000));
-        console.log(difTimes);
-        console.log(playingVideoId);
+        var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
+        sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
+        sessionStorage.setItem('playingVideoId', playingVideoId);
+
         //  document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
     });
 
 }
-
 
 function createRoom() {
     var videoID = document.getElementById("videoid").value;
@@ -57,4 +55,10 @@ function createRoom() {
 
 function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
+}
+var playingVideoId = sessionStorage.getItem('playingVideoId');
+var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
+
+function loadVideo() {
+    document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + timeIntoVideo + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 }
