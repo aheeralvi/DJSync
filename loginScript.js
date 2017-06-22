@@ -15,10 +15,10 @@ if (!firebase.apps.length) {
 
 // sign in stuff
 const txtemail = document.getElementById('txtemail');
-const txtpassword = document.getElementById('txtpassword');
-const signup = document.getElementById('signup');
+// const txtpassword = document.getElementById('txtpassword');
+// const signup = document.getElementById('signup');
 const signin = document.getElementById('signin');
-const logout = document.getElementById('logout');
+// const logout = document.getElementById('logout');
 
 logout.addEventListener('click', e => {
     firebase.auth().signOut();
