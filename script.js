@@ -40,3 +40,16 @@ function pullVideoData() {
     });
 
 }
+
+function joinRoom(roomName) {
+    return nil;
+}
+
+function createRoom(roomName) {
+    firebase.database().ref(roomName).set({
+        videoLink: "awaiting video link",
+        startTime: "awaiting start time"
+    })
+}
+
+createRoom("emtyPersonRoom");
