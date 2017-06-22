@@ -29,20 +29,19 @@ function startVideo(Videoid, startTime) {
 
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
-    // var userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref("/VideoStates/").once('value').then(function(snapshot) {
-        var timeVideoStarted = snapshot.val().startTimeStamp;
-        var playingVideoId = snapshot.val().videoUniqueID;
+
+    var roomName = document.getElementById("roomToJoin").value
+
+    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+        var timeVideoStarted = snapshot.val().startTime;
+        var playingVideoId = snapshot.val().videoLink;
         var difTimes = Math.ceil((currentTime - timeVideoStarted) / (1000));
         console.log(difTimes);
-        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
-
-
-
+        console.log(playingVideoId);
+        //  document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
     });
 
 }
-
 
 
 function createRoom() {
