@@ -36,8 +36,8 @@ function pullVideoData() {
         var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
         sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
         sessionStorage.setItem('playingVideoId', playingVideoId);
-
-        //  document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+        window.location.href = 'index.html'
+            //  document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
     });
 
 }
