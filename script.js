@@ -76,9 +76,11 @@ function createRoom() {
 function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
 }
-var playingVideoId = sessionStorage.getItem('playingVideoId');
-var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
+
 
 function loadVideo() {
+    var playingVideoId = sessionStorage.getItem('playingVideoId');
+    var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
+
     document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + timeIntoVideo + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 }
