@@ -30,6 +30,7 @@ function startVideo(Videoid, startTime) {
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
     var roomName = document.getElementById("roomToJoin").value;
+    sessionStorage.setItem('roomName', roomName);
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         var timeVideoStarted = snapshot.val().startTime;
         var playingVideoId = snapshot.val().videoLink;
@@ -37,10 +38,29 @@ function pullVideoData() {
         sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
         sessionStorage.setItem('playingVideoId', playingVideoId);
         window.location.href = 'index.html'
-            //  document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+            //maybe need to comment that line back out ^ 
     });
 
 }
+
+function syncRoom() {
+    var roomName = sessionStorage.getItem('roomName');
+    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+
+        var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
+
+        var timeVideoStarted = snapshot.val().startTime;
+        var playingVideoId = snapshot.val().videoLink;
+        var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
+        sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
+        sessionStorage.setItem('playingVideoId', playingVideoId);
+        window.location.href = 'index.html'
+        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
+    });
+}
+//Runs on sync button press ^
+
 
 function createRoom() {
     var videoID = document.getElementById("videoid").value;
