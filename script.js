@@ -38,7 +38,7 @@ function pullVideoData() {
         sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
         sessionStorage.setItem('playingVideoId', playingVideoId);
         window.location.href = 'index.html'
-        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+            //document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
             //maybe need to comment that line back out ^ 
     });
 
