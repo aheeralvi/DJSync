@@ -118,12 +118,14 @@ body {
 #vid {
     height: 300px;
     width: 300px;
+    left: 50%;
+    margin-left: -480px;
 }
 
 #logout {
-    position: relative;
+    position: absolute;
     top: 1%;
-    left: 90%;
+    left: 89%;
     width: 150;
     height: 50;
 }
