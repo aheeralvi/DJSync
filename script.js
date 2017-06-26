@@ -77,6 +77,11 @@ function createRoom() {
 
 function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
+    if (elementId == 'roomdialogue') {
+        document.getElementById('joindialogue').style.display = 'none';
+    } else {
+        document.getElementById('roomdialogue').style.display = 'none';
+    }
 }
 
 
