@@ -70,6 +70,8 @@ function createRoom() {
         videoLink: videoID,
         startTime: startTime
     })
+    sessionStorage.setItem('timeIntoVideo', 0);
+    sessionStorage.setItem('playingVideoId', videoID);
     promise.then(function() { window.location.href = 'index.html' }, function() { console.log("fail") });
 }
 
@@ -81,6 +83,6 @@ function showBox(elementId) {
 function loadVideo() {
     var playingVideoId = sessionStorage.getItem('playingVideoId');
     var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
-
+    console.log(timeIntoVideo);
     document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + timeIntoVideo + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
 }
