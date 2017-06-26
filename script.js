@@ -28,19 +28,20 @@ function pullVideoData() {
 }
 
 // the Sync Room button reloads the video based on what the time should be
-var roomName = sessionStorage.getItem('roomName');
-return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+function syncRoom() {
+    var roomName = sessionStorage.getItem('roomName');
+    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
 
-    var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
+        var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
 
-    var timeVideoStarted = snapshot.val().startTime;
-    var playingVideoId = snapshot.val().videoLink;
-    var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
-    sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
-    sessionStorage.setItem('playingVideoId', playingVideoId);
-    window.location.href = 'index.html'
-    document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
-});
+        var timeVideoStarted = snapshot.val().startTime;
+        var playingVideoId = snapshot.val().videoLink;
+        var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
+        sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
+        sessionStorage.setItem('playingVideoId', playingVideoId);
+        window.location.href = 'index.html'
+        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
+    });
 }
 
 //sends data up to Firebase, creates a room with a videoID and name
