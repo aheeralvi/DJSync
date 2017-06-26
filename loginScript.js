@@ -53,7 +53,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log(firebaseUser);
         //logout.style.display = 'inline-block'
         var user = firebase.auth().currentUser;
-        window.location.href = "index.html";
+        window.location.href = "home.html";
     } else {
         console.log("Signin Failed");
     }
