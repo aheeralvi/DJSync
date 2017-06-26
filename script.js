@@ -1,4 +1,4 @@
-// Initialize Firebase
+// Initialize Firebase if not already initialized
 var config = {
     apiKey: "AIzaSyAH7CQ-JuB5KFJqFGrQXIF_NxMp-glz6PY",
     authDomain: "music-sync-8212d.firebaseapp.com",
@@ -11,22 +11,7 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
-function startVideo(Videoid, startTime) {
-    var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
-    var videoLink = ("http://www.youtube.com/embed/" + Videoid + "?start=" + startTime + "&autoplay=1&controls=0&showinfo=1&disablekb=1")
-        // alert(videoLink);
-    document.getElementById('player').src = videoLink;
-
-    firebase.database().ref('VideoStates').set({
-        startTimeStamp: currentTime,
-        videoUniqueID: Videoid
-    });
-
-    return;
-}
-
-//startVideo("typiQaelXD4", "0");
-
+// function pulls data from Firebase and uses session storage to keep it
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
     var roomName = document.getElementById("roomToJoin").value;
@@ -38,30 +23,27 @@ function pullVideoData() {
         sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
         sessionStorage.setItem('playingVideoId', playingVideoId);
         window.location.href = 'index.html'
-            //document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
-            //maybe need to comment that line back out ^ 
     });
 
 }
 
-function syncRoom() {
-    var roomName = sessionStorage.getItem('roomName');
-    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+// the Sync Room button reloads the video based on what the time should be
+var roomName = sessionStorage.getItem('roomName');
+return firebase.database().ref(roomName).once('value').then(function(snapshot) {
 
-        var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
+    var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
 
-        var timeVideoStarted = snapshot.val().startTime;
-        var playingVideoId = snapshot.val().videoLink;
-        var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
-        sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
-        sessionStorage.setItem('playingVideoId', playingVideoId);
-        window.location.href = 'index.html'
-        document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
-    });
+    var timeVideoStarted = snapshot.val().startTime;
+    var playingVideoId = snapshot.val().videoLink;
+    var timeIntoVideo = Math.ceil((currentTime - timeVideoStarted) / (1000));
+    sessionStorage.setItem('timeIntoVideo', timeIntoVideo);
+    sessionStorage.setItem('playingVideoId', playingVideoId);
+    window.location.href = 'index.html'
+    document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
+});
 }
-//Runs on sync button press ^
 
-
+//sends data up to Firebase, creates a room with a videoID and name
 function createRoom() {
     var videoID = document.getElementById("videoid").value;
     var roomName = document.getElementById("roomname").value;
@@ -75,6 +57,8 @@ function createRoom() {
     promise.then(function() { window.location.href = 'index.html' }, function() { console.log("fail") });
 }
 
+// shows and hides the dialogue boxes for join and create room buttons
+// takes the id of the element to be shown as the argument
 function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
     if (elementId == 'roomdialogue') {
@@ -84,7 +68,7 @@ function showBox(elementId) {
     }
 }
 
-
+// called onload by index.html, starts the video automatically
 function loadVideo() {
     var playingVideoId = sessionStorage.getItem('playingVideoId');
     var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');

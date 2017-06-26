@@ -1,4 +1,4 @@
-// Initialize Firebase
+// Initialize Firebase if not already initialized
 var config = {
     apiKey: "AIzaSyAH7CQ-JuB5KFJqFGrQXIF_NxMp-glz6PY",
     authDomain: "music-sync-8212d.firebaseapp.com",
@@ -10,25 +10,23 @@ var config = {
 if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
-//firebase.initializeApp(config);
 
 
-// sign in stuff
+
+// obtain username, the signin and logout buttons
+// not all pages may contain each element
 const txtemail = document.getElementById('txtemail');
-// const txtpassword = document.getElementById('txtpassword');
-// const signup = document.getElementById('signup');
 const signin = document.getElementById('signin');
-// const logout = document.getElementById('logout');
+const logout = document.getElementById('logout');
 
+// add event listener for logout
 logout.addEventListener('click', e => {
     firebase.auth().signOut();
 });
 
-//add sign in event
+//add event listener for login
 signin.addEventListener('click', e => {
-    // //get email and password
-    // const email = txtemail.value;
-    // const password = txtpassword.value;
+
     const auth = firebase.auth();
     //sign in
     const promise = auth.signInAnonymously().catch(function(error) {
@@ -36,18 +34,7 @@ signin.addEventListener('click', e => {
     })
 });
 
-//add sign up event
-/*
-signup.addEventListener('click', e => {
-    //get email and password
-    const email = txtemail.value;
-    const password = txtpassword.value;
-    const auth = firebase.auth();
-    const promise = auth.createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});*/
-
-//add realtime authentication listener
+// realtime listener that waits for authentication state to change
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
         console.log(firebaseUser);
