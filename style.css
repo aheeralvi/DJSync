@@ -95,6 +95,7 @@ body {
     width: 300px;
     height: 250px;
     text-align: center;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #roomdialogue {
@@ -104,6 +105,7 @@ body {
     height: 350px;
     text-align: center;
     display: none;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #joindialogue {
@@ -113,6 +115,7 @@ body {
     height: 250px;
     text-align: center;
     display: none;
+    box-shadow: 5px 5px 5px grey;
 }
 
 #vid {
