@@ -64,7 +64,7 @@ function showBox(elementId) {
     document.getElementById(elementId).style.display = 'block';
     if (elementId == 'roomdialogue') {
         document.getElementById('joindialogue').style.display = 'none';
-    } else {
+    } else if (elementId == 'joindialogue') {
         document.getElementById('roomdialogue').style.display = 'none';
     }
 }
@@ -75,4 +75,29 @@ function loadVideo() {
     var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
     console.log(timeIntoVideo);
     document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + timeIntoVideo + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+}
+
+//playlist stores up to one hundred songs
+function Playlist() {
+    Playlist.counter = 0;
+    this.list = new Array(100);
+}
+
+var playlist = new Playlist();
+
+function addToPlaylist() {
+
+    name = document.getElementById('roomname1').value;
+    videoid = document.getElementById('videoid1').value;
+    playlist.list[Playlist.counter] = videoid;
+    Playlist.counter++;
+    var upNext;
+    return firebase.database().ref(name).once('value').then(function(snapshot) {
+        upNext = snapshot.val().upNext;
+        if (upNext === undefined) {
+            const promise = firebase.database().ref(name).set({
+                upNext: videoid
+            })
+        }
+    });
 }
