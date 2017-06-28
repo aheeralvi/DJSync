@@ -11,6 +11,8 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config);
 }
 
+
+
 // function pulls data from Firebase and uses session storage to keep it
 function pullVideoData() {
     var currentTime = (new Date).getTime(); //toTimeString().slice(0, 8);
@@ -55,6 +57,7 @@ function createRoom() {
     })
     sessionStorage.setItem('timeIntoVideo', 0);
     sessionStorage.setItem('playingVideoId', videoID);
+    sessionStorage.setItem('roomName', roomName);
     promise.then(function() { window.location.href = 'index.html' }, function() { console.log("fail") });
 }
 
@@ -70,11 +73,37 @@ function showBox(elementId) {
 }
 
 // called onload by index.html, starts the video automatically
+// also access Youtube API
+var player;
+
 function loadVideo() {
     var playingVideoId = sessionStorage.getItem('playingVideoId');
     var timeIntoVideo = sessionStorage.getItem('timeIntoVideo');
     console.log(timeIntoVideo);
     document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + timeIntoVideo + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+    player = new YT.Player('player', {
+        events: {
+            'onStateChange': onVideoEnd
+        }
+    });
+    console.log(player.getPlayerState());
+}
+
+var currentVideo = 0;
+
+
+function onVideoEnd(event) {
+    if (player.getPlayerState() == 0) {
+        currentVideo++;
+        var next = playlist.list[currentVideo - 1];
+        var startTime = (new Date).getTime();
+        const promise = firebase.database().ref(sessionStorage.getItem('roomName')).set({
+            videoLink: next,
+            startTime: startTime
+        });
+
+        document.getElementById('player').src = "http://www.youtube.com/embed/" + next + "?start=" + 0 + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
+    }
 }
 
 //playlist stores up to one hundred songs
@@ -91,13 +120,10 @@ function addToPlaylist() {
     videoid = document.getElementById('videoid1').value;
     playlist.list[Playlist.counter] = videoid;
     Playlist.counter++;
-    var upNext;
-    return firebase.database().ref(name).once('value').then(function(snapshot) {
-        upNext = snapshot.val().upNext;
-        if (upNext === undefined) {
-            const promise = firebase.database().ref(name).set({
-                upNext: videoid
-            })
-        }
-    });
+
+    var newRow = document.createElement('tr');
+    newRow.appendChild(document.createElement('td'));
+    newRow.cells[0].innerText = videoid;
+    document.getElementById('playlist').appendChild(newRow);
+    console.log(playlist.list);
 }

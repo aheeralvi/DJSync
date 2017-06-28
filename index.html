@@ -3,46 +3,48 @@
 <head>
     <link rel='stylesheet' type='text/css' href='style.css'></link>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+
     <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 
 </head>
 
-<body>
 
-    <body onload="loadVideo()">
+<body onload="loadVideo()">
 
-        <div>
-            <a href="home.html">
-                <button class='buttons2' type='button'>Home</button>
-            </a>
-            <p></p>
-            <a id='logout' href="login.html">
-                <button class='buttons2' type='button'>Logout</button>
-            </a>
+    <div>
+        <a href="home.html">
+            <button class='buttons2' type='button'>Home</button>
+        </a>
+        <p></p>
+        <a id='logout' href="login.html">
+            <button class='buttons2' type='button'>Logout</button>
+        </a>
 
-        </div>
+    </div>
 
-        <div id="vid" style="position:relative;height:540px;width:960px;padding-bottom:15%">
-            <iframe id="player" src="" width="100%" height="100%"></iframe>
-        </div>
-        <button class='buttons2' type='button' onclick='syncRoom()'>Sync</button>
-        <button class='buttons2' type='button' onclick="showBox('adddialogue')">Add to Playlist</button>
+    <div id="vid" style="position:relative;height:540px;width:960px;padding-bottom:15%">
+        <iframe id="player" src="" width="100%" height="100%"></iframe>
+    </div>
+    <button class='buttons2' type='button' onclick='syncRoom()'>Sync</button>
+    <button class='buttons2' type='button' onclick="showBox('adddialogue')">Add to Playlist</button>
 
-        <div id='adddialogue'>
-            <h1 class='roomtext'>Add Music</h1>
-            <input class='inputs' id='roomname1' placeholder='your room name'></input>
-            <input class='inputs' id='videoid1' placeholder='enter a video id'></input>
-            <button class='buttons1' type='button' onclick='addToPlaylist()'>add</button>
-        </div>
+    <div id='adddialogue'>
+        <h1 class='roomtext'>Add Music</h1>
+        <input class='inputs' id='roomname1' placeholder='your room name'></input>
+        <input class='inputs' id='videoid1' placeholder='enter a video id'></input>
+        <button class='buttons1' type='button' onclick='addToPlaylist()'>add</button>
+    </div>
 
-        <table id='playlist'>
-            <tr>
-                <th>Up Next</th>
-            </tr>
+    <table id='playlist'>
+        <tr>
+            <th>Up Next</th>
+        </tr>
 
-        </table>
-        <script src='script.js '></script>
-        <script src='loginScript.js '></script>
-    </body>
+    </table>
+
+    <script src='script.js '></script>
+    <script src='loginScript.js '></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
 
 </html>
