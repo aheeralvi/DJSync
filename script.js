@@ -43,6 +43,7 @@ function syncRoom() {
         sessionStorage.setItem('playingVideoId', playingVideoId);
         window.location.href = 'index.html'
         document.getElementById("player").src = "http://www.youtube.com/embed/" + playingVideoId + "?start=" + difTimes + "&autoplay=1&controls=0&showinfo=1&disablekb=1";
+        player.stopVideo();
     });
 }
 
@@ -91,9 +92,8 @@ function loadVideo() {
 
 var currentVideo = 0;
 
-
 function onVideoEnd(event) {
-    if (player.getPlayerState() == 0) {
+    if (event.data == YT.PlayerState.ENDED) {
         currentVideo++;
         var next = playlist.list[currentVideo - 1];
         var startTime = (new Date).getTime();
@@ -101,6 +101,7 @@ function onVideoEnd(event) {
             videoLink: next,
             startTime: startTime
         });
+        promise.then(function() { console.log('hi') }, function() { console.log('fail') });
 
         document.getElementById('player').src = "http://www.youtube.com/embed/" + next + "?start=" + 0 + "&autoplay=1&controls=0&showinfo=1&disablekb=1"
     }
